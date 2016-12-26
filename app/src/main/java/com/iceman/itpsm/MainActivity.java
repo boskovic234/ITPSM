@@ -2,7 +2,6 @@ package com.iceman.itpsm;
 
 import android.content.Intent;
 import android.os.AsyncTask;
-import android.support.v4.media.MediaBrowserServiceCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -44,6 +43,8 @@ public class MainActivity extends AppCompatActivity {
         ETPassword = (EditText) findViewById(R.id.ETPassword);
         BTNLogin = (Button) findViewById(R.id.BTNLogin);
 
+        koneksi = new ConnectionClass();
+
     }
 
     public void login(View view) {
@@ -59,30 +60,17 @@ public class MainActivity extends AppCompatActivity {
 
             DoLogin doLogin = new DoLogin();
             doLogin.execute("");
-       }
-    }
-
-    public void wrongpassword()
-    {
-        Toast.makeText(this, "Password not match", Toast.LENGTH_SHORT).show();
-    }
-
-    public void matchpassword()
-    {
-        Intent intentlayarutama = new Intent(this, LayarUtama.class);
-        Log.d("Disni", username);
-        intentlayarutama.putExtra("Login", username);
-        startActivity(intentlayarutama);
+        }
     }
 
     public class DoLogin extends AsyncTask<String, String, String> {
         String z = "";
 
-
         @Override
         protected String doInBackground(String... params) {
+
             Connection kon = koneksi.CONN();
-            Log.d("Disini","Disiniii");
+
             if (kon == null) {
                 z = "Error koneksi SQL";
             } else {
@@ -92,11 +80,11 @@ public class MainActivity extends AppCompatActivity {
                         "Photo," +
                         "MobilePhone," +
                         "Password " +
-                        "from Master_PIC " +
-                        "where DI =" + "'" + username + "'";
+                        "from ITProduction..Master_PIC " +
+                        "where ID =" + "'" + username + "'";
 
                 Statement stmt = null;
-                Log.d("Disini",querylogin);
+                Log.d("Disini", querylogin);
 
                 try {
                     stmt = kon.createStatement();
@@ -145,16 +133,22 @@ public class MainActivity extends AppCompatActivity {
             return z;
         }
 
-        protected void  onPostExecute(String result)
-        {
-            if (password != PasswordK)
-            {
+        protected void onPostExecute(String result) {
+            if (password.equals(PasswordK)) {
+                matchpassword();
+            } else {
                 wrongpassword();
             }
-            else
-            {
-                matchpassword();
-            }
         }
+    }
+
+    public void wrongpassword() {
+        Toast.makeText(this, "Password not match", Toast.LENGTH_SHORT).show();
+    }
+
+    public void matchpassword() {
+        Intent intentlayarutama = new Intent(this, LayarUtama.class);
+        intentlayarutama.putExtra("Login", username);
+        startActivity(intentlayarutama);
     }
 }

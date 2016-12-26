@@ -19,9 +19,9 @@ public class ConnectionClass {
     String UN = "sa";
     String PASS = "AdIns2009";
 
-
     @SuppressLint("NewApi")
     public Connection CONN() {
+
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder()
                 .permitAll().build();
         StrictMode.setThreadPolicy(policy);
