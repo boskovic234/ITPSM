@@ -21,12 +21,12 @@ public class LayarUtama extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.layar_utama);
 
-        TVUsername = (TextView) findViewById(R.id.TVUsername);
+        //TVUsername = (TextView) findViewById(R.id.TVUsername);
 
         Intent intent = getIntent();
         Username = intent.getStringExtra("Login");
 
-        TVUsername.setText("Welcome, " + Username);
+        //TVUsername.setText("Welcome, " + Username);
 
     }
 
