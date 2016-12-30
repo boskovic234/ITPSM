@@ -142,7 +142,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void matchpassword() {
         Intent intentlayarutama = new Intent(this, LayarUtama.class);
-        intentlayarutama.putExtra("Login", username);
+        intentlayarutama.putExtra("Nama", NameK);
         startActivity(intentlayarutama);
     }
 }

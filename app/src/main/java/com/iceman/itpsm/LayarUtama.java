@@ -6,6 +6,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
+import android.view.animation.AnimationUtils;
 import android.widget.TextView;
 
 /**
@@ -28,7 +29,7 @@ public class LayarUtama extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.layar_utama);
 
-        //TVUsername = (TextView) findViewById(R.id.TVUsername);
+        TVUsername = (TextView) findViewById(R.id.TVName);
 
         //Untuk Define Menu Samping
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawerLayout);
@@ -39,8 +40,11 @@ public class LayarUtama extends AppCompatActivity {
         //Untuk Define Menu Samping
 
         Intent intent = getIntent();
-        Username = intent.getStringExtra("Login");
+        Username = intent.getStringExtra("Nama");
+        TVUsername.setText("Welcome, "+ Username);
+        TVUsername.startAnimation(AnimationUtils.loadAnimation(LayarUtama.this, android.R.anim.slide_in_left));
 
+        TVUsername = R.string.usrnav;
     }
 
     //Supaya tombol menu kiri atas bisa di klik
