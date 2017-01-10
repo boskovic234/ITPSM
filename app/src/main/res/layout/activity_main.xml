@@ -32,7 +32,8 @@
         android:maxLines="1"
         android:singleLine="true"
         android:id="@+id/ETPassword"
-        android:hint="Password"/>
+        android:hint="Password"
+        android:password="true" />
 
     <Button
         android:layout_width="wrap_content"
