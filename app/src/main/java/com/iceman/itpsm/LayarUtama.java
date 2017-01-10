@@ -44,7 +44,7 @@ public class LayarUtama extends AppCompatActivity {
         TVUsername.setText("Welcome, "+ Username);
         TVUsername.startAnimation(AnimationUtils.loadAnimation(LayarUtama.this, android.R.anim.slide_in_left));
 
-        TVUsername = R.string.usrnav;
+        //TVUsername = R.string.usrnav;
     }
 
     //Supaya tombol menu kiri atas bisa di klik
